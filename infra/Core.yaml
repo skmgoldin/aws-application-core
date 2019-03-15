@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  AppName:
+    Description: >
+      Friendly application name, like `myapp`. Must be DNS-compliant. Will be concatenated with
+      AppTld to form the application domain name.'
+    Type: String
+  AppTld:
+    Description: 'Top-level domain for the application and all of its services'
+    Type: String
+
+Resources:
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Description: 'The hosted zone can contain record sets that point subdomains to services'
+    Properties:
+      Name: !Sub '${AppName}.${AppTld}'
+
+  ApplicationCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Description: 'A TLS certificate covering the application domain and all its subdomains'
+    Properties:
+      DomainName: !Sub '${AppName}.${AppTld}'
+      SubjectAlternativeNames:
+        - !Sub '*.${AppName}.${AppTld}'
+      ValidationMethod: DNS
+
+  ApplicationUtilityBucket:
+    Type: AWS::S3::Bucket
+    Description: 'A general-purpose bucket for general-purpose application data'
+    Properties:
+      BucketName: !Sub '${AppName}-utilitybucket'
+
+Outputs:
+  AppName:
+    Description: 'Friendly name of the application'
+    Value: !Ref AppName
+    Export:
+      Name: AppName
+
+  HostedZoneId:
+    Description: 'The top-level hosted zone ID of the application'
+    Value: !Ref HostedZone
+    Export:
+      Name: HostedZoneId
+
+  ApplicationCertificateArn:
+    Description:
+      'Arn of the application TLS certificate, covering the application domain and all subdomains'
+    Value: !Ref ApplicationCertificate
+    Export:
+      Name: ApplicationCertificateArn
+      
+  ApplicationUtilityBucketName:
+    Description: 'Resource name for the application general-purpose utility bucket'
+    Value: !Ref ApplicationUtilityBucket
+    Export:
+      Name: ApplicationUtilityBucketName
+

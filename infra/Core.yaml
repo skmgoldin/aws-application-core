@@ -37,24 +37,24 @@ Outputs:
     Description: 'Friendly name of the application'
     Value: !Ref AppName
     Export:
-      Name: AppName
+      Name: !Sub '${AppName}-AppName'
 
   HostedZoneId:
     Description: 'The top-level hosted zone ID of the application'
     Value: !Ref HostedZone
     Export:
-      Name: HostedZoneId
+      Name: !Sub '${AppName}-HostedZoneId'
 
   ApplicationCertificateArn:
     Description:
       'Arn of the application TLS certificate, covering the application domain and all subdomains'
     Value: !Ref ApplicationCertificate
     Export:
-      Name: ApplicationCertificateArn
+      Name: !Sub '${AppName}-ApplicationCertificateArn'
       
   ApplicationUtilityBucketName:
     Description: 'Resource name for the application general-purpose utility bucket'
     Value: !Ref ApplicationUtilityBucket
     Export:
-      Name: ApplicationUtilityBucketName
+      Name: !Sub '${AppName}-ApplicationUtilityBucketName'
 

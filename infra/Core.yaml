@@ -64,3 +64,9 @@ Outputs:
     Export:
       Name: !Sub '${AppName}-AwsRegion'
 
+  AwsAccountId:
+    Description: 'AWS account ID associated with this stack'
+    Value: !Ref AWS::AccountId
+    Export:
+      Name: !Sub '${AppName}-AwsAccountId'
+

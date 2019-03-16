@@ -58,3 +58,9 @@ Outputs:
     Export:
       Name: !Sub '${AppName}-ApplicationUtilityBucketName'
 
+  AwsRegion:
+    Description: 'AWS region where core is hosted'
+    Value: !Ref AWS::Region
+    Export:
+      Name: !Sub '${AppName}-AwsRegion'
+

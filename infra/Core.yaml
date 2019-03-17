@@ -6,6 +6,7 @@ Parameters:
       Friendly application name, like `myapp`. Must be DNS-compliant. Will be concatenated with
       AppTld to form the application domain name.'
     Type: String
+
   AppTld:
     Description: 'Top-level domain for the application and all of its services'
     Type: String
@@ -38,6 +39,12 @@ Outputs:
     Value: !Ref AppName
     Export:
       Name: !Sub '${AppName}-AppName'
+
+  AppTld:
+    Description: 'Top-level domain of the application'
+    Value: !Sub '${AppTld}'
+    Export:
+      Name: !Sub '${AppName}-AppTld'
 
   HostedZoneId:
     Description: 'The top-level hosted zone ID of the application'

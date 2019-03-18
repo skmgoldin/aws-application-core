@@ -20,11 +20,11 @@ Resources:
 
   ApplicationCertificate:
     Type: AWS::CertificateManager::Certificate
-    Description: 'A TLS certificate covering the application domain and all its subdomains'
+    Description: 'A TLS certificate covering the application domain'
     Properties:
       DomainName: !Sub '${AppName}.${AppTld}'
       SubjectAlternativeNames:
-        - !Sub '*.${AppName}.${AppTld}'
+        - !Sub '${AppName}.${AppTld}'
       ValidationMethod: DNS
 
   ApplicationUtilityBucket:
@@ -54,7 +54,7 @@ Outputs:
 
   ApplicationCertificateArn:
     Description:
-      'Arn of the application TLS certificate, covering the application domain and all subdomains'
+      'Arn of the application TLS certificate, covering the application domain'
     Value: !Ref ApplicationCertificate
     Export:
       Name: !Sub '${AppName}-ApplicationCertificateArn'

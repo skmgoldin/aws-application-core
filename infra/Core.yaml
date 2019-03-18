@@ -38,42 +38,42 @@ Outputs:
     Description: 'Friendly name of the application'
     Value: !Ref AppName
     Export:
-      Name: !Sub '${AppName}-AppName'
+      Name: !Sub '${AppName}:AppName'
 
   AppTld:
     Description: 'Top-level domain of the application'
     Value: !Sub '${AppTld}'
     Export:
-      Name: !Sub '${AppName}-AppTld'
+      Name: !Sub '${AppName}:AppTld'
 
   HostedZoneId:
     Description: 'The top-level hosted zone ID of the application'
     Value: !Ref HostedZone
     Export:
-      Name: !Sub '${AppName}-HostedZoneId'
+      Name: !Sub '${AppName}:HostedZoneId'
 
   ApplicationCertificateArn:
     Description:
       'Arn of the application TLS certificate, covering the application domain'
     Value: !Ref ApplicationCertificate
     Export:
-      Name: !Sub '${AppName}-ApplicationCertificateArn'
+      Name: !Sub '${AppName}:ApplicationCertificateArn'
       
   ApplicationUtilityBucketName:
     Description: 'Resource name for the application general-purpose utility bucket'
     Value: !Ref ApplicationUtilityBucket
     Export:
-      Name: !Sub '${AppName}-ApplicationUtilityBucketName'
+      Name: !Sub '${AppName}:ApplicationUtilityBucketName'
 
   AwsRegion:
     Description: 'AWS region where core is hosted'
     Value: !Ref AWS::Region
     Export:
-      Name: !Sub '${AppName}-AwsRegion'
+      Name: !Sub '${AppName}:AwsRegion'
 
   AwsAccountId:
     Description: 'AWS account ID associated with this stack'
     Value: !Ref AWS::AccountId
     Export:
-      Name: !Sub '${AppName}-AwsAccountId'
+      Name: !Sub '${AppName}:AwsAccountId'
 
